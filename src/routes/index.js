@@ -1,27 +1,57 @@
 import React, { lazy, Suspense } from "react";
 import { Redirect } from "react-router-dom";
 
-import Home from '../module/home/index.js';
+import BlankLayout from '../layout/blankLayout/index.js';
+import HomeLayout from '../layout/homeLayout/index.js';
+
 
 const SuspenseComponent = Component => props => {
     return (
         <Suspense fallback={null}>
-        <Component {...props}></Component>
+            <Component {...props}></Component>
         </Suspense>
     )
-}
+};
+
+const HomeComponent = lazy(() => import("../module/home/index.js"));
+const AboutComponent = lazy(() => import("../module/about/index.js"));
+const CategoriesComponent = lazy(() => import("../module/categories/index.js"));
+const TagsComponent = lazy(() => import("../module/tags/index.js"));
+const ArchivesComponent = lazy(() => import("../module/archives/index.js"));
+
 
 export default [
     {
-        component: Home,
+        component: BlankLayout,
         routes: [
             {
                 path: "/",
-                component: Home,
+                component: HomeLayout,
                 routes: [
                     {
                         path: "/",
-                        exact: true
+                        exact: true,
+                        render: () => (<Redirect to="/home"></Redirect>)
+                    },
+                    {
+                        path: "/home",
+                        component: SuspenseComponent(HomeComponent)
+                    },
+                    {
+                        path: "/about",
+                        component: SuspenseComponent(AboutComponent)
+                    },
+                    {
+                        path: "/categories",
+                        component: SuspenseComponent(CategoriesComponent)
+                    },
+                    {
+                        path: "/tags",
+                        component: SuspenseComponent(TagsComponent)
+                    },
+                    {
+                        path: "/archives",
+                        component: SuspenseComponent(ArchivesComponent)
                     }
                 ]
             }
