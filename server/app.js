@@ -61,9 +61,9 @@ app.use(static(
 
 //登录权限控制，cookie检查
 app.use(async (ctx, next) => {
-    const url = ['/login', '/logout'];
+    const url = ['/blog/login', '/blog/logout', '/blog/reg'];
 
-    if (!ctx.session.userId && !url.includes(ctx.url)) {
+    if (!ctx.session.userID && !url.includes(ctx.url)) {
         ctx.body = {
             code: 401,
             message: "登录已过期，请重新登录"

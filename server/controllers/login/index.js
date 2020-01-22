@@ -4,17 +4,22 @@ const User = model.user;
 
 const login = async (ctx) => {
 
-    let userId = ctx.request.body.userId,
-        password = ctx.request.body.password,
-        res = await User.findAll({
+    let { username, password } =  ctx.request.body;
+
+    let userRes = await User.findAll({where: {username}});
+    if (!userRes.length) {
+        ctx.body = new ErrorModel('该账号不存在，请先注册');
+        return;
+    } 
+
+    let res = await User.findAll({
             where: {
-                id: userId,
+                username,
                 password
             }
         });
     if (res.length) {
-        console.log(userId);
-        ctx.session.userId = userId;
+        ctx.session.userID = username;
         ctx.body = new SuccessModel('登陆成功');
     } else {
         ctx.body = new ErrorModel('密码或账号错误，请重试');
@@ -27,6 +32,6 @@ const logout = async (ctx) => {
 }
 
 module.exports = {
-    'POST /login': login,
-    'GET /logout': logout
+    'POST /blog/login': login,
+    'GET /blog/logout': logout
 }
