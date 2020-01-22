@@ -1,11 +1,11 @@
 /*
  * @Author: suhuashan
  * @Date: 2019-10-22 13:04:29
- * @LastEditTime: 2019-11-14 21:54:44
+ * @LastEditTime : 2020-01-21 19:24:00
  */
 
 const config = {
-    database: 'test', // 使用哪个数据库
+    database: 'react_blog', // 使用哪个数据库
     dialect: "mysql",
     username: 'root', // 用户名
     password: 'aa1234', // 口令

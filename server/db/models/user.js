@@ -9,20 +9,23 @@ const User = sequelize.define(
             type: Sequelize.INTEGER,
             autoIncrement: true
         },
-        userName: Sequelize.STRING,
-        userAge: Sequelize.INTEGER,
-        password: Sequelize.STRING
+        account: Sequelize.STRING,
+        password: Sequelize.STRING,
+        desc: Sequelize.TEXT,
+        signature: Sequelize.TEXT,
+        avatar: Sequelize.STRING(1000),
+        tags: Sequelize.TEXT                        
     },
     {
         charset: 'utf8',
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true
     }
 );
 
 User.associate = function (models) { 
-    models.user.hasMany(models.book, {
-        foreignKey: 'userId',
+    models.user.hasMany(models.article, {
+        foreignKey: 'userID',
         targetKey: 'id'
     });
 };
