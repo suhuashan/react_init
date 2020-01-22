@@ -7,6 +7,7 @@ console.log("init sequelize...");
 var sequelize = new Sequelize(config.database,config.username,config.password,{
     host: config.host,
     dialect: config.dialect,
+    timezone: config.timezone,
     pool: {
         max: 5,
         min: 0,

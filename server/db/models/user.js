@@ -9,7 +9,7 @@ const User = sequelize.define(
             type: Sequelize.INTEGER,
             autoIncrement: true
         },
-        account: Sequelize.STRING,
+        username: Sequelize.STRING,
         password: Sequelize.STRING,
         desc: Sequelize.TEXT,
         signature: Sequelize.TEXT,
