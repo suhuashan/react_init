@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { CommonEllipsis } from '../../style/common.js';
+import Avatar from '../../assets/images/avatar.svg';
 
 export const HomeLayoutConatiner = styled.div`
     border-top: 3px #222 solid;
@@ -24,23 +26,63 @@ export const LeftTop = styled.div`
 `;
 
 export const PersonInfo = styled.div`
+    padding: 10px 20px 0;
     height: 115px;
     background: #222;
     color: #fff;
     margin-bottom: 16px;
 `;
 
+export const PersonAvatar = styled.div`
+    float: left;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #fff;
+    background: no-repeat #fff url(${props => props.avatar || Avatar}) center center ;
+    border-radius: 50%;
+    cursor: pointer;
+`;
+
+export const PersonName = styled(CommonEllipsis)`
+    width: 65%;
+    margin-left: 70px;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+`;
+
+export const PersonSignature = styled(CommonEllipsis)`
+    font-size: 14px;
+    width: 100%;
+    margin-top: 10px;
+    height: 30px;
+    line-height: 30px;
+    color: #ddd;
+`;
+
 export const NavLinkContainer = styled.div`
+    position: relative;
     a {
         display: block;
         color: #555;
-        height: 27px;
+        height: 37px;
         line-height: 27px;
         padding: 5px 20px;
         font-size: 14px;
         cursor: pointer;
         &.selected {
             background: #f9f9f9;
+            &:after {
+                content: " ";
+                position: absolute;
+                top: 50%;
+                margin-top: -3px;
+                right: 15px;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: #bbb;
+            }
         }
         .iconfont {
             font-size: 12px;

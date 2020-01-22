@@ -1,8 +1,8 @@
 import axios from 'axios';
-
+import { message } from 'antd';
 
 // axios默认参数配置
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'http://localhost:8000/blog';
 axios.defaults.timeout = 10000;
 axios.defaults.withCredentials = true;
 
@@ -58,15 +58,17 @@ const ajax = (option) => {
             },
             ...ajaxData
         }).then((res) => {
-            if ( res.status === 200 && res.data.code === 401 ) {
-                window.location.href = window.location.origin + '/#/login';
-            } else if ( res.status === 200 ) {
+            let data = res.data;
+
+            if (res.status === 200 && data.code === 0) {
                 resolve(res.data);
             } else {
+                message.error(data.message || data.msg || "网络错误，请刷新重试");
                 reject("fail: ", res);
             }
         }).catch((err) => {
             console.log("error: ", err);
+            message.error("网络错误，请刷新重试");
             reject(err);
         });
     })

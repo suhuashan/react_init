@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { renderRoutes } from "react-router-config";
 import { BrowserRouter } from 'react-router-dom';
 
-import { GlobalStyle } from "./style.js";
+import { GlobalStyle } from "./style/global.js";
 
 import store from './store/index.js';
 import routes from "./routes/index.js";
