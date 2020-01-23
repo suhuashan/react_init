@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, Fragment, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
-import { Modal, Button, Form, Input, Icon } from 'antd';
+import { Modal, Button, Form, Input, Icon, message, Tooltip } from 'antd';
+import debounce from 'lodash/debounce';
+import get from 'lodash/get';
 import { 
     HomeLayoutConatiner,
     HomeContainer,
@@ -12,6 +14,8 @@ import {
     PersonAvatar,
     PersonName,
     PersonSignature,
+    SignatureContent,
+    EditIcon,
     NavLinkContainer,
     LeftBottom,
     RightContainer
@@ -19,12 +23,15 @@ import {
 import NavLinkConfig from './navLinkConfig.js';
 import ajax from '@/util/request.js';
 import { actionCreators } from './store/index.js';
-import { LOGIN, REG, USER_INFO } from '@/const/api/index.js';
+import { LOGIN, REG, USER_INFO, EDIT_SIGNATURE } from '@/const/api/index.js';
 
 function HomeLayout (props) {
     const { getFieldDecorator, validateFields } = props.form;
 
+    let inputEl = useRef(null);
     let [modalStatus, setModalStatus] = useState(false);
+    let [isEdit, setEditStatus] = useState(false);
+
     let userData = useSelector(state => {
         return {
             username: state.getIn(['homeLayout', 'username']),
@@ -46,9 +53,10 @@ function HomeLayout (props) {
         validateFields((err, values) => {
             if (!err) {
               let { username, password } = values;
+              let isLogin = type === 'login';
               
               ajax({
-                  url: type === 'login' ? LOGIN : REG,
+                  url: isLogin ? LOGIN : REG,
                   method: 'post',
                   data: {
                       username,
@@ -56,11 +64,31 @@ function HomeLayout (props) {
                   }
               }).then(res => {
                 handleCancel();
-                dispatch(actionCreators.getUserInfo(username));
+                message.success(isLogin ? '登录成功' : '注册成功');
+                dispatch(actionCreators.getUserInfo());
               });
             }
         });
     };
+
+    //编辑个性签名
+    let handleEditSignature = () => {
+        let editValue = get(inputEl, 'current.state.value', '');
+        ajax({
+            url: EDIT_SIGNATURE,
+            method: 'post',
+            data: {
+                signature: editValue
+            }
+        }).then(() => {
+            message.success('编辑成功');
+            dispatch(actionCreators.getUserInfo());
+        });
+    };
+
+    useEffect(() => {
+        dispatch(actionCreators.getUserInfo());
+    }, []);
 
     return (
         <HomeLayoutConatiner>
@@ -69,12 +97,32 @@ function HomeLayout (props) {
                     <LeftTop>
                         <PersonInfo>
                             <PersonAvatar avatar={userData.avatar}></PersonAvatar>
-                            <PersonName title={userData.account}
-                                        onClick={() => {setModalStatus(true)}}>
-                                {userData.username ? userData.username : '登录/注册'}
+                            <PersonName onClick={() => {setModalStatus(true)}}>
+                                <Tooltip placement="rightTop" title={userData.username} overlayClassName='common-tooltip'>
+                                    {userData.username ? userData.username : '登录/注册'}
+                                </Tooltip>
                             </PersonName>
-                            <PersonSignature title={userData.signature}>
-                                {userData.signature ? userData.signature : '这个人很懒，啥都没写...'}
+                            <PersonSignature>
+                                {
+                                    isEdit ? 
+                                    <Input placeholder="编辑个性签名" 
+                                           size="small" 
+                                           ref={inputEl}
+                                           defaultValue={userData.signature}
+                                           onBlur={() => setEditStatus(false)}
+                                           onChange={debounce(handleEditSignature, 500)}/> :
+                                    <Fragment>
+                                        <SignatureContent>
+                                            <Tooltip placement="rightTop" title={userData.signature} overlayClassName='common-tooltip'>
+                                                {userData.signature ? userData.signature : '这个人很懒，啥都没写...'}
+                                            </Tooltip> 
+                                        </SignatureContent>
+                                        <EditIcon className="iconfont icon-bianji" 
+                                                  onClick={() => {setEditStatus(true)}}/>
+                                    </Fragment>
+                                }
+
+
                             </PersonSignature>
                         </PersonInfo>
                         {
@@ -99,6 +147,7 @@ function HomeLayout (props) {
             <Modal  width={400}
                     visible={modalStatus}
                     title="登录/注册"
+                    destroyOnClose={true}
                     onCancel={handleCancel}
                     footer={[
                         <Button key="back" onClick={handleCancel}>

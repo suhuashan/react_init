@@ -51,13 +51,28 @@ export const PersonName = styled(CommonEllipsis)`
     cursor: pointer;
 `;
 
-export const PersonSignature = styled(CommonEllipsis)`
+export const PersonSignature = styled.div`
+    position: relative;
     font-size: 14px;
     width: 100%;
     margin-top: 10px;
     height: 30px;
     line-height: 30px;
     color: #ddd;
+`;
+
+export const SignatureContent = styled(CommonEllipsis)`
+    width: 90%;
+    height: 30px;
+`;
+
+export const EditIcon = styled.div`
+    position: absolute;
+    right: 0;
+    top: 0;
+    float: right;
+    font-size: 12px;
+    cursor: pointer;
 `;
 
 export const NavLinkContainer = styled.div`

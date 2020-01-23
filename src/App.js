@@ -8,7 +8,7 @@ import { GlobalStyle } from "./style/global.js";
 import store from './store/index.js';
 import routes from "./routes/index.js";
 import './assets/iconfont/iconfont.css';
-
+import './style/common.less';
 
 
 function App() {

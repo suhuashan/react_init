@@ -6,3 +6,6 @@ export const LOGIN = '/login';
 
 //获取用户信息
 export const USER_INFO = '/user_info';
+
+//编辑个性签名
+export const EDIT_SIGNATURE = '/edit_signature';
