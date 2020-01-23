@@ -3,8 +3,7 @@ const model = require('../../db/model');
 const User = model.user;
 
 const getUserInfo = async (ctx) => {
-
-    let { username } =  ctx.request.query,
+    let username = ctx.session.userID,
         res = await User.findOne({
             where: {
                 username
@@ -19,8 +18,28 @@ const getUserInfo = async (ctx) => {
     } else {
         ctx.body = new ErrorModel('该账号不存在');
     }
-}
+};
+
+const editSignature = async (ctx) => {
+    try {
+        let username = ctx.session.userID,
+            newSignature = ctx.request.body.signature;
+
+        await User.update({
+            signature: newSignature
+        },
+        {
+            where: {
+                username
+            }
+        });
+        ctx.body = new SuccessModel('编辑成功');
+    } catch (e) {
+        ctx.body = new ErrorModel('编辑失败');
+    }
+};
 
 module.exports = {
-    'GET /blog/user_info': getUserInfo
+    'GET /blog/user_info': getUserInfo,
+    'POST /blog/edit_signature': editSignature
 }

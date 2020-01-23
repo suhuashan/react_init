@@ -15,6 +15,7 @@ const reg = async (ctx) => {
     } else {
         try {
             await User.create({username, password});
+            ctx.session.userID = username;
             ctx.body = new SuccessModel('注册成功');
         } catch (err) {
             ctx.body = new ErrorModel('注册失败');
