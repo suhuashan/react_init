@@ -46,6 +46,13 @@
       "font_class": "home",
       "unicode": "e603",
       "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "11855597",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
     }
   ]
 }
