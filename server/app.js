@@ -69,6 +69,10 @@ app.use(async (ctx, next) => {
             message: "登录已过期，请重新登录"
         };
         return;
+    } else if (ctx.url === '/blog/upload') {
+
+        //文件上传处理
+        await upload(ctx, next); 
     } else {
         await next();
     }
@@ -78,11 +82,6 @@ app.use(async (ctx, next) => {
 app.use(views(path.join(__dirname, './view'), {
     extension: 'ejs'
 }));
-
-//上传文件处理中间件
-app.use( async ( ctx, next ) => {
-    await upload(ctx, next); 
-});
 
 //加载路由
 app.use(routes());

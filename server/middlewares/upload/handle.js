@@ -48,7 +48,7 @@ function uploadFile( ctx, options) {
   let filePath = path.join( options.path,  fileTime)
   mkdirsSync( filePath );
   
-  return new Promise((resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
     console.log('文件上传中...')
     let result = { 
       success: false,
@@ -67,6 +67,7 @@ function uploadFile( ctx, options) {
       // 文件写入事件结束
       file.on('end', function() {
         result.success = true;
+        result.filePath = `http://localhost:8000/upload/${fileTime}/${fileName}`;
         result.message = '文件上传成功';
         console.log('文件上传成功！');
         resolve(result);
