@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
-import { Modal, Button, Form, Input, Icon, message, Tooltip } from 'antd';
+import { Modal, Button, Form, Input, Icon, message, Tooltip, Upload } from 'antd';
 import debounce from 'lodash/debounce';
 import get from 'lodash/get';
 import { 
@@ -24,6 +24,10 @@ import NavLinkConfig from './navLinkConfig.js';
 import ajax from '@/util/request.js';
 import { actionCreators } from './store/index.js';
 import { LOGIN, REG, USER_INFO, EDIT_SIGNATURE } from '@/const/api/index.js';
+
+
+
+
 
 function HomeLayout (props) {
     const { getFieldDecorator, validateFields } = props.form;
@@ -86,6 +90,23 @@ function HomeLayout (props) {
         });
     };
 
+    //图片上传成功回调
+    let handleChange = (obj) => {
+        if (obj.file.status === 'done' && obj.file.response.success) {
+            message.success('上传成功');
+            dispatch(actionCreators.getUserInfo());
+        }
+    };
+
+    //图片上传格式的校验
+    let beforeUpload = (file) => {
+        if (!/image\/\w+/.test(file.type)) {
+            message.warning('图片格式不正确');
+            return false;
+        } 
+        return true;
+    };
+
     useEffect(() => {
         dispatch(actionCreators.getUserInfo());
     }, []);
@@ -96,7 +117,18 @@ function HomeLayout (props) {
                 <LeftContainer>
                     <LeftTop>
                         <PersonInfo>
-                            <PersonAvatar avatar={userData.avatar}></PersonAvatar>
+                            <Upload
+                                name="avatar" 
+                                listType="picture-card"
+                                className="avatar-uploader"
+                                showUploadList={false}
+                                action="http://localhost:8000/blog/upload"
+                                withCredentials={true}
+                                beforeUpload={beforeUpload}
+                                onChange={handleChange}
+                            >
+                                <PersonAvatar avatar={userData.avatar}></PersonAvatar>
+                            </Upload>
                             <PersonName onClick={() => {setModalStatus(true)}}>
                                 <Tooltip placement="rightTop" title={userData.username} overlayClassName='common-tooltip'>
                                     {userData.username ? userData.username : '登录/注册'}
@@ -149,11 +181,7 @@ function HomeLayout (props) {
                     title="登录/注册"
                     destroyOnClose={true}
                     onCancel={handleCancel}
-                    footer={[
-                        <Button key="back" onClick={handleCancel}>
-                            取消
-                        </Button>
-                    ]}>
+                    footer={null}>
                  <Form className="login-form">
                     <Form.Item>
                         {getFieldDecorator('username', {

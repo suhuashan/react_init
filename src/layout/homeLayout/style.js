@@ -38,7 +38,8 @@ export const PersonAvatar = styled.div`
     width: 50px;
     height: 50px;
     border: 1px solid #fff;
-    background: no-repeat #fff url(${props => props.avatar || Avatar}) center center ;
+    background: no-repeat #fff url(${props => props.avatar || Avatar}) center center;
+    background-size: 100% 100%;
     border-radius: 50%;
     cursor: pointer;
 `;
