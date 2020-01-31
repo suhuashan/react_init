@@ -18,7 +18,7 @@ const AboutComponent = lazy(() => import("../module/about/index.js"));
 const CategoriesComponent = lazy(() => import("../module/categories/index.js"));
 const TagsComponent = lazy(() => import("../module/tags/index.js"));
 const ArchivesComponent = lazy(() => import("../module/archives/index.js"));
-
+const WriteComponent = lazy(() => import("../module/write/index.js"));
 
 export default [
     {
@@ -52,6 +52,10 @@ export default [
                     {
                         path: "/archives",
                         component: SuspenseComponent(ArchivesComponent)
+                    },
+                    {
+                        path: "/write",
+                        component: SuspenseComponent(WriteComponent)
                     }
                 ]
             }

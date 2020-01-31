@@ -21,7 +21,7 @@ export const LeftContainer = styled.div`
 
 export const LeftTop = styled.div`
     background: #fff;
-    height: 370px;
+    height: 408px;
     margin-bottom: 15px;
 `;
 

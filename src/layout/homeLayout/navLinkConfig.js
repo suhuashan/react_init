@@ -25,6 +25,11 @@ export default [
         navIcon: 'icon-archives'
     },
     {
+        navText: '写作',
+        navPath: '/write',
+        navIcon: 'icon-xiezuo'
+    },
+    {
         navText: '搜索',
         navPath: '/search',
         navIcon: 'icon-search'

@@ -41,6 +41,13 @@
       "unicode_decimal": 58881
     },
     {
+      "icon_id": "7933561",
+      "name": "写作",
+      "font_class": "xiezuo",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
       "icon_id": "9336340",
       "name": "分类-选中",
       "font_class": "categories",
