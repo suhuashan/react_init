@@ -39,7 +39,27 @@ const editSignature = async (ctx) => {
     }
 };
 
+const editDesc = async (ctx) => {
+    try {
+        let username = ctx.session.userID,
+            newDesc = ctx.request.body.desc;
+
+        await User.update({
+            desc: newDesc
+        },
+        {
+            where: {
+                username
+            }
+        });
+        ctx.body = new SuccessModel('编辑成功');
+    } catch (e) {
+        ctx.body = new ErrorModel('编辑失败');
+    }
+};
+
 module.exports = {
     'GET /blog/user_info': getUserInfo,
-    'POST /blog/edit_signature': editSignature
+    'POST /blog/edit_signature': editSignature,
+    'POST /blog/edit_desc': editDesc
 }

@@ -25,8 +25,8 @@ async function upload (ctx, next) {
                 username: ctx.session.userID
             }
         });
-        
-        delete result.filePath;
+
+        result.code = 0;
 
         ctx.body = result
         return;
