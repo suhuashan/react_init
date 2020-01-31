@@ -108,13 +108,12 @@ export const NavLinkContainer = styled.div`
 `;
 
 export const LeftBottom = styled.div`
-    height: 320px;
+    height: 200px;
     background: #fff;
 `;
 
 export const RightContainer = styled.div`
     overflow: hidden;
     width: 700px;
-    height: 400px;
     background: #fff;
 `;

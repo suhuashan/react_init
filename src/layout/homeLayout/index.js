@@ -23,11 +23,7 @@ import {
 import NavLinkConfig from './navLinkConfig.js';
 import ajax from '@/util/request.js';
 import { actionCreators } from './store/index.js';
-import { LOGIN, REG, USER_INFO, EDIT_SIGNATURE } from '@/const/api/index.js';
-
-
-
-
+import { LOGIN, REG, EDIT_SIGNATURE } from '@/const/api/index.js';
 
 function HomeLayout (props) {
     const { getFieldDecorator, validateFields } = props.form;
@@ -142,7 +138,7 @@ function HomeLayout (props) {
                                            ref={inputEl}
                                            defaultValue={userData.signature}
                                            onBlur={() => setEditStatus(false)}
-                                           onChange={debounce(handleEditSignature, 500)}/> :
+                                           onChange={debounce(handleEditSignature, 2000)}/> :
                                     <Fragment>
                                         <SignatureContent>
                                             <Tooltip placement="rightTop" title={userData.signature} overlayClassName='common-tooltip'>
