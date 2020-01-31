@@ -9,3 +9,6 @@ export const USER_INFO = '/user_info';
 
 //编辑个性签名
 export const EDIT_SIGNATURE = '/edit_signature';
+
+//编辑个人信息描述
+export const EDIT_DESC = '/edit_desc';
