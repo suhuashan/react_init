@@ -118,7 +118,7 @@ function HomeLayout (props) {
                                 listType="picture-card"
                                 className="avatar-uploader"
                                 showUploadList={false}
-                                action="http://localhost:8000/blog/upload"
+                                action="http://localhost:8000/blog/upload?type=avatar"
                                 withCredentials={true}
                                 beforeUpload={beforeUpload}
                                 onChange={handleChange}

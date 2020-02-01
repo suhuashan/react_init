@@ -5,13 +5,13 @@ import BlankLayout from '../layout/blankLayout/index.js';
 import HomeLayout from '../layout/homeLayout/index.js';
 
 
-const SuspenseComponent = Component => props => {
+const SuspenseComponent = Component => React.memo(props => {
     return (
         <Suspense fallback={null}>
             <Component {...props}></Component>
         </Suspense>
     )
-};
+},(nextProps, previousProps) => nextProps !== previousProps);
 
 const HomeComponent = lazy(() => import("../module/home/index.js"));
 const AboutComponent = lazy(() => import("../module/about/index.js"));

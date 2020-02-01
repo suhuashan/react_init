@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux-immutable';
 import { reducer as HomeLayoutReducer } from '../layout/homeLayout/store/index.js'; 
+import { reducer as WriteReducer } from '../module/write/store/index.js';
 
 export default combineReducers({
-    homeLayout: HomeLayoutReducer
+    homeLayout: HomeLayoutReducer,
+    write: WriteReducer
 });

@@ -18,7 +18,6 @@ function RichText (props) {
             method: 'post',
             data: formData
         }).then((res) => {
-            console.log(res);
             message.success('上传成功');
             cb && cb(res);
         }).catch(() => {
