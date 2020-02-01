@@ -14,8 +14,9 @@ const reg = async (ctx) => {
         ctx.body = new ErrorModel('该账号已经存在');
     } else {
         try {
-            await User.create({username, password});
-            ctx.session.userID = username;
+            let res = await User.create({username, password});
+            ctx.session.username = username;
+            ctx.session.userID = res.dataValues.id;
             ctx.body = new SuccessModel('注册成功');
         } catch (err) {
             ctx.body = new ErrorModel('注册失败');

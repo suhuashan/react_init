@@ -3,7 +3,7 @@ const model = require('../../db/model');
 const User = model.user;
 
 const getUserInfo = async (ctx) => {
-    let username = ctx.session.userID,
+    let username = ctx.session.username,
         res = await User.findOne({
             where: {
                 username
@@ -22,7 +22,7 @@ const getUserInfo = async (ctx) => {
 
 const editSignature = async (ctx) => {
     try {
-        let username = ctx.session.userID,
+        let username = ctx.session.username,
             newSignature = ctx.request.body.signature;
 
         await User.update({
@@ -41,7 +41,7 @@ const editSignature = async (ctx) => {
 
 const editDesc = async (ctx) => {
     try {
-        let username = ctx.session.userID,
+        let username = ctx.session.username,
             newDesc = ctx.request.body.desc;
 
         await User.update({

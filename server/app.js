@@ -69,7 +69,7 @@ app.use(async (ctx, next) => {
             message: "登录已过期，请重新登录"
         };
         return;
-    } else if (ctx.url === '/blog/upload') {
+    } else if (ctx.url.indexOf('/blog/upload') >= 0) {
 
         //文件上传处理
         await upload(ctx, next); 

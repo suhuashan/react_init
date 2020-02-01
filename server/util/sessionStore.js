@@ -2,7 +2,7 @@
  * @description: redis的存储
  */
 
-const TTL = 1200;             //redis的有效时间，单位为秒，默认20分钟
+const TTL = 7200;             //redis的有效时间，单位为秒，默认20分钟
 
 function getSession(sid) {
     return `${sid}`

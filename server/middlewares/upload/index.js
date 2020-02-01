@@ -5,7 +5,9 @@ const User = model.user;
 
 
 async function upload (ctx, next) {
-    if (ctx.url === '/blog/upload' && ctx.method === 'POST' ) {
+    let uploadType = ctx.request.query.type;
+
+    if (ctx.url.indexOf('/blog/upload') >= 0 && ctx.method === 'POST' ) {
         // 上传文件请求处理
         let result = { 
             code: -1,
@@ -17,14 +19,17 @@ async function upload (ctx, next) {
         result = await uploadeHandler( ctx, {
             path: serverFilePath
         })
-
-        await User.update({
-            avatar: result.filePath
-        },{
-            where: {
-                username: ctx.session.userID
-            }
-        });
+        
+        //用户头像上传需要修改数据库
+        if (uploadType === 'avatar') {
+            await User.update({
+                avatar: result.filePath
+            },{
+                where: {
+                    username: ctx.session.username
+                }
+            });
+        }
 
         result.code = 0;
 

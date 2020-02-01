@@ -19,7 +19,8 @@ const login = async (ctx) => {
             }
         });
     if (res.length) {
-        ctx.session.userID = username;
+        ctx.session.username = username;
+        ctx.session.userID = res[0].dataValues.id;
         ctx.body = new SuccessModel('登陆成功');
     } else {
         ctx.body = new ErrorModel('密码或账号错误，请重试');

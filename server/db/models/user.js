@@ -9,12 +9,16 @@ const User = sequelize.define(
             type: Sequelize.INTEGER,
             autoIncrement: true
         },
-        username: Sequelize.STRING,
+        username: {
+            type: Sequelize.STRING,
+            unique: true
+        },
         password: Sequelize.STRING,
         desc: Sequelize.TEXT,
         signature: Sequelize.TEXT,
         avatar: Sequelize.STRING(1000),
-        tags: Sequelize.TEXT                        
+        tags: Sequelize.TEXT,
+        categories: Sequelize.TEXT                     
     },
     {
         charset: 'utf8',
