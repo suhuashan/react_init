@@ -1,110 +1,70 @@
-import React, { useState, useRef, useCallback } from  'react';
+import React, { createRef, useState, useRef, useCallback, useEffect } from  'react';
 import { useSelector, useDispatch } from 'react-redux';
 import RichText from '@/components/richText/index.js';
-import { Button, Input, Select } from 'antd';
-import debounce from 'lodash/debounce';
 import { WriteWrapper, 
          WriteTitle, 
          WriteInput, 
          BottomPart,
          BottomBtn,
          ArticleInfo } from './style.js';
-import { ARTICLE_TYPE, BLOG_STATUS } from '@/const/text/index.js';
 import { SAVE_PUBLISH_BLOG } from '@/const/api/index.js';
-import { message } from 'antd';
+import {  BLOG_STATUS } from '@/const/text/index.js';
+import { message, Button } from 'antd';
 import ajax from '@/util/request.js';
+import FormInput from './form/input.js';
+import FormSelect from './form/select.js';
 
-const { Option } = Select;
-const { TextArea } = Input;
-
-function Write () {
+function Write (props) {
     let dispatch = useDispatch();
-    let inputEl = useRef(null);
-    let textAreaEl = useRef(null);
-    let [blogType, setBlogType] = useState('');
-    let [blogContent, setBlogContent] = useState('');
-    let [blogTags, setBlogTags] = useState('');
-    let [blogCategories, setBlogCategories] = useState('');
-    let { tags = '', categories = '' } = useSelector(state => {
-        return {
-            tags: state.getIn(['homeLayout', 'tags']),
-            categories: state.getIn(['homeLayout', 'categories'])
-        }
-    });
-
+    let richTextRef = createRef();
+    let formIputRef = createRef();
+    let formSelectRef = createRef();
+    
     let savePublishBlog = (type) => {
-        ajax({
-            method: 'post',
-            url: SAVE_PUBLISH_BLOG,
-            data: {
-                blogStatus: BLOG_STATUS[type],
-                blogTitle: inputEl.current.state.value,
-                blogAbstract: textAreaEl.current.state.value,
-                blogTags,
-                blogCategories,
-                blogType,
-                blogContent
-            }   
-        }).then(res => {
-            message.success('发布成功');
-        });
+        let blogContent = richTextRef.current.getContent();
+
+        if (!blogContent) {
+            message.warning('表单填写不完整');
+            return;
+        }
+        Promise.all([
+            formIputRef.current.validateFields(),
+            formSelectRef.current.validateFields()
+        ]).then(res => {
+            let { blogTitle, blogAbstract } = res[0];
+            let { blogType, blogTags, blogCategories} = res[1];
+
+            ajax({
+                method: 'post',
+                url: SAVE_PUBLISH_BLOG,
+                data: {
+                    blogStatus: BLOG_STATUS[type],
+                    blogTitle,
+                    blogAbstract,
+                    blogTags: blogTags.join(),
+                    blogCategories: blogCategories.join(),
+                    blogType,
+                    blogContent
+                }   
+            }).then(res => {
+                message.success('发布成功');
+                props.history.replace('/home');
+            });
+        }).catch(() => {
+            message.warning('表单填写不完整');
+        })
     };
     
     return (
         <WriteWrapper>
             <WriteTitle>创作你的创作</WriteTitle>
-            <WriteInput>
-                <Input placeholder="文章标题" ref={inputEl}></Input>
-                <TextArea rows={3} placeholder="文章摘要" ref={textAreaEl}></TextArea>
-            </WriteInput>
-            <RichText url='http://localhost:8000/blog/upload'
-                      defaultValue={blogContent}
-                      onQuillChange={debounce(setBlogContent, 1000)} />
-            <BottomPart>
-                <ArticleInfo>
-                    文章标签：
-                    <Select mode="tags" 
-                            style={{ width: '80%' }} 
-                            placeholder="文章标签"
-                            onChange={(value) => {setBlogTags(value.join())}}>
-                        {
-                            tags && tags.split(',').map(item => {
-                                return (<Option key={item}>{item}</Option>);
-                            }) || []
-                        }   
-                    </Select>
-                </ArticleInfo>
-                <ArticleInfo>
-                    分类专栏：
-                    <Select mode="tags" 
-                            key="categories"
-                            style={{ width: '80%' }} 
-                            placeholder="分类专栏"
-                            onChange={(value) => setBlogCategories(value.join())}>
-                        {
-                            categories && categories.split(',').map(item => {
-                                return (<Option key={item}>{item}</Option>);
-                            }) || []
-                        }   
-                    </Select>
-                </ArticleInfo>
-                <ArticleInfo>
-                    文章类型：
-                    <Select style={{ width: '20%' }} 
-                            placeholder="文章类型" 
-                            onChange={(value) => {setBlogType(value)}}>
-                        {
-                            ARTICLE_TYPE.map(item => {
-                                return (<Option key={item.value} value={item.value}>{item.name}</Option>);
-                            })
-                        }   
-                    </Select>
-                </ArticleInfo>
-                <BottomBtn>
-                    <Button onClick={() => savePublishBlog('draft')}>保存为草稿</Button>
-                    <Button onClick={() => savePublishBlog('published')}>发布博客</Button>
-                </BottomBtn>
-            </BottomPart>
+            <FormInput ref={formIputRef}/>
+            <RichText ref={richTextRef} url='http://localhost:8000/blog/upload'/>
+            <FormSelect ref={formSelectRef}/>
+            <BottomBtn>
+                <Button onClick={() => savePublishBlog('draft')}>保存为草稿</Button>
+                <Button onClick={() => savePublishBlog('published')}>发布博客</Button>
+            </BottomBtn>
         </WriteWrapper>
     );
 }
