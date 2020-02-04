@@ -15,3 +15,6 @@ export const EDIT_DESC = '/edit_desc';
 
 //保存博客为草稿||发布博客
 export const SAVE_PUBLISH_BLOG = '/save_publish_blog';
+
+//博客列表
+export const GET_BLOG_LIST = '/get_blog_list';

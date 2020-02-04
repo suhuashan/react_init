@@ -10,7 +10,6 @@ import { actionCreators } from '@/layout/homeLayout/store/index.js';
 
 function About () {
     let { desc } = useSelector(state => {
-        console.log('about');
             return {desc: state.getIn(['homeLayout', 'desc'])}
         });
     let [editStatus, setEditStatus] = useState(false);
