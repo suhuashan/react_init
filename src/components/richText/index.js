@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useImperativeHandle } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { ImageDrop } from 'quill-image-drop-module';
@@ -6,11 +6,20 @@ import { message } from 'antd';
 import ajax from '@/util/request.js';
 Quill.register('modules/imageDrop', ImageDrop);
 
-function RichText (props) {
+function RichText (props, ref) {
     let quillRef = useRef(null);
     let onQuillChange = (content) => {
-        props.onQuillChange(content);
+        props.onQuillChange && props.onQuillChange(content);
     };
+
+    useImperativeHandle(ref, () => ({
+        getContent: () => {
+            return quillRef.current.getEditorContents();
+        },
+        onBlur: () => {
+            quillRef.current.blur();
+        }
+    }));
     
     function uploadFile (formData, cb) {
         ajax({
@@ -58,9 +67,7 @@ function RichText (props) {
 
     return  <ReactQuill ref={quillRef}
                         defaultValue={props.defaultValue}
-                        modules={Object.assign(DEFAULT_OPTIONS, props.options)}
-                        onChange={onQuillChange} />
+                        modules={Object.assign(DEFAULT_OPTIONS, props.options)}/>
 };
 
-export default RichText;
-
+export default React.forwardRef(RichText);
