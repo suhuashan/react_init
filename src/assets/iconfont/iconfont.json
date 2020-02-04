@@ -20,6 +20,20 @@
       "unicode_decimal": 58911
     },
     {
+      "icon_id": "2116298",
+      "name": "时间",
+      "font_class": "time",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "2571903",
+      "name": "发表",
+      "font_class": "send",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
       "icon_id": "3007014",
       "name": "归档 (1)",
       "font_class": "archives",
@@ -32,6 +46,13 @@
       "font_class": "tags",
       "unicode": "e600",
       "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "5286716",
+      "name": "文件夹",
+      "font_class": "wenjianjia",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
     },
     {
       "icon_id": "7636878",
@@ -60,6 +81,13 @@
       "font_class": "home",
       "unicode": "e603",
       "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "11117995",
+      "name": "字数",
+      "font_class": "zishu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
     },
     {
       "icon_id": "11855597",
