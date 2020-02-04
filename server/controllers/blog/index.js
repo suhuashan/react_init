@@ -44,6 +44,43 @@ const savePublishBlog = async(ctx) => {
 
 };
 
+const getBlogList = async (ctx) => {
+    let { limit, offset } =  ctx.request.body;
+    try {
+        let blogListTotal = await Article.findAll({where:{status: 'published'}});
+        let blogList = await Article.findAll({
+            attributes: [
+                ['id', 'blogID'],
+                ['title', 'blogTitle'],
+                ['abstract', 'blogAbstract'],
+                ['content', 'blogContent'],
+                ['createdAt', 'blogTime'],
+                ['tags', 'blogTags'],
+                ['categories', 'blogCategories'],
+                ['read', 'blogRead'],
+                ['word', 'blogWord'],
+                ['type', 'blogType']
+            ],
+            where: {
+                status: 'published'
+            },
+            order: [['createdAt', 'desc']],
+            limit,
+            offset
+        });
+
+        ctx.body = new SuccessModel({
+            list: blogList,
+            total: blogListTotal.length
+        });
+    } catch (err) {
+        console.log(err);
+        ctx.body = new ErrorModel('获取失败');
+    }
+
+};
+
 module.exports = {
-    'POST /blog/save_publish_blog': savePublishBlog
+    'POST /blog/save_publish_blog': savePublishBlog,
+    'POST /blog/get_blog_list': getBlogList
 }

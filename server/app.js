@@ -61,7 +61,7 @@ app.use(static(
 
 //登录权限控制，cookie检查
 app.use(async (ctx, next) => {
-    const url = ['/blog/login', '/blog/logout', '/blog/reg'];
+    const url = ['/blog/login', '/blog/logout', '/blog/reg', '/blog/get_blog_list'];
 
     if (!ctx.session.userID && !url.includes(ctx.url)) {
         ctx.body = {
