@@ -67,7 +67,8 @@ function RichText (props, ref) {
 
     return  <ReactQuill ref={quillRef}
                         defaultValue={props.defaultValue}
-                        modules={Object.assign(DEFAULT_OPTIONS, props.options)}/>
+                        modules={Object.assign(DEFAULT_OPTIONS, props.options)}
+                        onChange={onQuillChange}/>
 };
 
 export default React.forwardRef(RichText);
