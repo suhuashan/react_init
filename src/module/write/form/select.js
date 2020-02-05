@@ -33,7 +33,7 @@ function FormSelect (props, ref) {
                             placeholder="文章标签">
                         {
                             tags && tags.split(',').map(item => {
-                                return (<Option key={uuid(item)}>{item}</Option>);
+                                return (<Option key={uuid(item)} value={item}>{item}</Option>);
                             }) || []
                         }  
                     </Select>
@@ -48,7 +48,7 @@ function FormSelect (props, ref) {
                             placeholder="分类专栏">
                         {
                             categories && categories.split(',').map(item => {
-                                return (<Option key={uuid(item)}>{item}</Option>);
+                                return (<Option key={uuid(item)} value={item}>{item}</Option>);
                             }) || []
                         }   
                     </Select>

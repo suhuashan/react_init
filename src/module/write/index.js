@@ -7,6 +7,7 @@ import { WriteWrapper,
          BottomPart,
          BottomBtn,
          ArticleInfo } from './style.js';
+import { actionCreators } from '@/layout/homeLayout/store/index.js';
 import { SAVE_PUBLISH_BLOG } from '@/const/api/index.js';
 import {  BLOG_STATUS } from '@/const/text/index.js';
 import { message, Button } from 'antd';
@@ -48,6 +49,7 @@ function Write (props) {
                 }   
             }).then(res => {
                 message.success('发布成功');
+                dispatch(actionCreators.getUserInfo());
                 props.history.replace('/home');
             });
         }).catch(() => {
