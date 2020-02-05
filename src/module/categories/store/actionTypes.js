@@ -1,0 +1,1 @@
+export const GET_BLOG_BY_CATEGORIES = 'get_blog_by_categories';
