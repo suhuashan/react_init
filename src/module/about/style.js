@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const AboutWrapper = styled.div`
-    min-height: 700px;
+    padding: 40px;
+    min-height: 500px;
 `;
 
 export const RightEdit = styled.div`
@@ -13,6 +14,15 @@ export const RightEdit = styled.div`
 
 export const ButtonWrapper = styled.div`
     float: right;
+`;
+
+export const AboutTitle = styled.div`
+    color: #555;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 10px auto;
+    width: 40%;
+    text-align: center;
 `;
 
 export const EditIcon = styled.div`
