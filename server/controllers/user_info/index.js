@@ -9,7 +9,7 @@ const getUserInfo = async (ctx) => {
                 username
             },
             attributes: [
-                'username', 'desc', 'signature', 'avatar', 'tags', 'createdAt'
+                'username', 'desc', 'signature', 'avatar', 'tags', 'createdAt', 'categories'
             ]
         });
         
