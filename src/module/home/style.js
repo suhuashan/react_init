@@ -39,7 +39,7 @@ export const BlogInfoItem = styled.div`
     line-height: 24px;
     .iconfont {
         font-size: 12px;
-        padding: 0 2px;
+        padding: 0 4px;
     }
 `;
 

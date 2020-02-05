@@ -27,6 +27,7 @@ function Home () {
     useEffect(() => {
         dispatch(actionCreators.getBlogList(10, 0));
     }, []);
+    
     return (
         <HomeWrapper>
             {
@@ -37,7 +38,7 @@ function Home () {
                             <BlogInfo>
                                 <BlogInfoItem>
                                     <i className="iconfont icon-send"></i> 
-                                    <span>发表于{handleTime(item.blogTime)}</span> |
+                                    <span>发表于{handleTime(item.blogTime, 'y-m-d')}</span> |
                                     <i className="iconfont icon-wenjianjia"></i>
                                     <span>分类于{item.blogCategories}</span>
                                 </BlogInfoItem>
