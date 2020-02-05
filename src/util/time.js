@@ -1,9 +1,10 @@
 /**
  * 返回传入时间的年月日
  * @param {String} time 
+ * @param {String} format 'y-m-d'/'m-d'
  * @return {String}
  */
-export function handleTime (time = '') {
+export function handleTime (time = '', format) {
     let date = new Date(time);
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
@@ -12,5 +13,11 @@ export function handleTime (time = '') {
     month = month >= 10 ? month : `0${month}`;
     day =  day >= 10 ? day : `0${day}`;
     
-    return `${year}-${month}-${day}`;
+    if (format === 'y-m-d') {
+        return `${year}-${month}-${day}`;
+    } else if (format === 'm-d') {
+        return `${month}-${day}`;
+    } else {
+        return '输入日期格式不符合';
+    }
 }

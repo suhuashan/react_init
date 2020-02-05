@@ -16,7 +16,9 @@ const SuspenseComponent = Component => React.memo(props => {
 const HomeComponent = lazy(() => import("../module/home/index.js"));
 const AboutComponent = lazy(() => import("../module/about/index.js"));
 const CategoriesComponent = lazy(() => import("../module/categories/index.js"));
+const CategoriesDetailComponent = lazy(() => import("../module/categories/detail/index.js"));
 const TagsComponent = lazy(() => import("../module/tags/index.js"));
+const TagsDetailComponent = lazy(() => import("../module/tags/detail/index.js"));
 const ArchivesComponent = lazy(() => import("../module/archives/index.js"));
 const WriteComponent = lazy(() => import("../module/write/index.js"));
 
@@ -43,11 +45,21 @@ export default [
                     },
                     {
                         path: "/categories",
+                        exact: true,
                         component: SuspenseComponent(CategoriesComponent)
                     },
                     {
+                        path: "/categories/:categoryName",
+                        component: SuspenseComponent(CategoriesDetailComponent)
+                    },
+                    {
                         path: "/tags",
+                        exact: true,
                         component: SuspenseComponent(TagsComponent)
+                    },
+                    {
+                        path: "/tags/:tagName",
+                        component: SuspenseComponent(TagsDetailComponent)
                     },
                     {
                         path: "/archives",
