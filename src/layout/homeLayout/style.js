@@ -29,7 +29,6 @@ export const PersonInfo = styled.div`
     padding: 10px 20px 0;
     height: 115px;
     background: #222;
-    color: #fff;
     margin-bottom: 16px;
 `;
 
@@ -50,6 +49,9 @@ export const PersonName = styled(CommonEllipsis)`
     height: 50px;
     line-height: 50px;
     cursor: pointer;
+    span { 
+        color: #fff;
+    }
 `;
 
 export const PersonSignature = styled.div`
@@ -65,6 +67,9 @@ export const PersonSignature = styled.div`
 export const SignatureContent = styled(CommonEllipsis)`
     width: 90%;
     height: 30px;
+    span {
+        color: #ddd;
+    }
 `;
 
 export const EditIcon = styled.div`
@@ -74,6 +79,7 @@ export const EditIcon = styled.div`
     float: right;
     font-size: 12px;
     cursor: pointer;
+    color: #ddd;
 `;
 
 export const NavLinkContainer = styled.div`

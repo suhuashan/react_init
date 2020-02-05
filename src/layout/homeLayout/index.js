@@ -157,7 +157,7 @@ function HomeLayout (props) {
                             NavLinkConfig.map((item) => {
                                 return (
                                     <NavLinkContainer key={item.navPath}>
-                                        <NavLink to={item.navPath} activeClassName="selected" >
+                                        <NavLink to={item.navPath} activeClassName="selected" exact={true}>
                                             <i className={`iconfont ${item.navIcon}`}></i>
                                             {item.navText}
                                         </NavLink>
