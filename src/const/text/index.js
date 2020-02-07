@@ -20,3 +20,22 @@ export const BLOG_STATUS = {
     draft: 'draft',
     published: 'published'
 };
+
+//用户全局信息
+export const USER_INFO = [
+    {   
+        path: '/archives',
+        name: '日志',
+        value: 'articles'
+    },
+    {
+        path: '/categories',
+        name: '分类',
+        value: 'categories'
+    },
+    {
+        path: '/tags',
+        name: '标签',
+        value: 'tags'
+    }
+];

@@ -18,12 +18,14 @@ import {
     EditIcon,
     NavLinkContainer,
     LeftBottom,
+    InfoItem,
     RightContainer
 } from './style.js';
 import NavLinkConfig from './navLinkConfig.js';
 import ajax from '@/util/request.js';
 import { actionCreators } from './store/index.js';
 import { LOGIN, REG, EDIT_SIGNATURE } from '@/const/api/index.js';
+import { USER_INFO } from '@/const/text/index.js';
 
 function HomeLayout (props) {
     const { getFieldDecorator, validateFields } = props.form;
@@ -38,7 +40,9 @@ function HomeLayout (props) {
             signature: state.getIn(['homeLayout', 'signature']),
             desc: state.getIn(['homeLayout', 'desc']),
             avatar: state.getIn(['homeLayout', 'avatar']),
-            tags: state.getIn(['homeLayout', 'tags'])
+            tags: state.getIn(['homeLayout', 'tags']).split(',').length,
+            categories: state.getIn(['homeLayout', 'categories']).split(',').length,
+            articles: state.getIn(['homeLayout', 'articles']).length
         };
     });
     let dispatch = useDispatch();
@@ -101,6 +105,10 @@ function HomeLayout (props) {
             return false;
         } 
         return true;
+    };
+
+    let goDetail = (path) => {
+        props.history.replace(path);
     };
 
     useEffect(() => {
@@ -166,7 +174,18 @@ function HomeLayout (props) {
                             })
                         }
                     </LeftTop>
-                    <LeftBottom>leftBottom</LeftBottom>
+                    <LeftBottom>
+                        {
+                            USER_INFO.map(item => {
+                                return (
+                                    <InfoItem onClick={() => goDetail(item.path)} key={item.value}>
+                                        <div>{userData[item.value] || 0}</div>
+                                        <div>{item.name}</div>
+                                    </InfoItem>
+                                )
+                            })
+                        }
+                    </LeftBottom>
                 </LeftContainer>
                 <RightContainer>
                     { renderRoutes(props.route.routes) }

@@ -114,8 +114,34 @@ export const NavLinkContainer = styled.div`
 `;
 
 export const LeftBottom = styled.div`
-    height: 200px;
+    display: flex;
+    margin: 0 auto;
+    width: 220px;
     background: #fff;
+    padding: 20px 10px;
+`;
+
+export const InfoItem = styled.div`
+    flex: 1;
+    height: 42px;
+    text-align: center;
+    border-right: 1px solid #eee;
+    cursor: pointer;
+    &:last-child {
+        border-right: 0;
+    }
+    div:first-child {
+        font-size: 16px;
+        font-weight: 600;
+        height: 22px;
+        line-height: 22px;
+    }
+    div:last-child {
+        color: #999;
+        font-size: 13px;
+        height: 16px;
+        line-height: 16px;
+    }
 `;
 
 export const RightContainer = styled.div`

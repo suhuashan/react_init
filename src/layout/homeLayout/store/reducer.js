@@ -7,7 +7,8 @@ const defaultState = fromJS({
     desc: '',
     avatar: '',
     tags: '',
-    categories: ''
+    categories: '',
+    articles: []
 });
 
 export default (previousState = defaultState, action) => {
