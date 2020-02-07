@@ -16,7 +16,7 @@ export const LeftContainer = styled.div`
     float: left;
     width: 240px;
     margin-right: 30px;
-    height: 720px;
+    height: 600px;
 `;
 
 export const LeftTop = styled.div`
@@ -114,11 +114,10 @@ export const NavLinkContainer = styled.div`
 `;
 
 export const LeftBottom = styled.div`
-    display: flex;
-    margin: 0 auto;
-    width: 220px;
     background: #fff;
     padding: 20px 10px;
+    margin: 0 auto;
+    display: flex;
 `;
 
 export const InfoItem = styled.div`
@@ -145,6 +144,7 @@ export const InfoItem = styled.div`
 `;
 
 export const RightContainer = styled.div`
+    padding: 40px;
     overflow: hidden;
     width: 700px;
     background: #fff;

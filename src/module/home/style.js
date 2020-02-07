@@ -4,7 +4,6 @@ import { CommonEllipsis } from '../../style/common.js';
 export const HomeWrapper = styled.div`
     width: 100%;
     min-height: 500px;
-    padding: 40px;
 `;
 
 export const BlogItem = styled.div`

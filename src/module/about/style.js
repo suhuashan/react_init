@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const AboutWrapper = styled.div`
-    padding: 40px;
     min-height: 500px;
 `;
 
