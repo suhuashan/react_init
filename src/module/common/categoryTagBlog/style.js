@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { CommonEllipsis } from '@/style/common.js';
 
 export const CtgDetailWrapper = styled.div`
-    padding: 40px;
     min-height: 600px;
 `;
 
@@ -71,6 +70,10 @@ export const BlogDetail = styled.div`
     transition-property: border;
     border-bottom: 1px dashed #ccc;
 
+    &:hover {
+        border-bottom-color: #666
+    }
+
     span {
         vertical-align: top;
         font-size: 12px;
@@ -93,9 +96,14 @@ export const BlogDetail = styled.div`
         transition-delay: 0s;
         transition-property: background;
     }
+
+    &:hover::before {
+        background: #222;
+    }
 `;
 
 export const BlogTitle = styled(CommonEllipsis)`
     width: 450px;
     display: inline-block;
+    cursor: pointer;
 `;

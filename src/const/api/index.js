@@ -24,3 +24,6 @@ export const GET_BLOG_LIST_BY_CATEGORIES = '/get_blog_list/by_categories';
 
 //根据标签名获取博客列表
 export const GET_BLOG_LIST_BY_TAGS = '/get_blog_list/by_tags';
+
+//根据日期获取博客（归档）
+export const GET_BLOG_LIST_BY_ARCHIVES = '/get_blog_list/by_archives';

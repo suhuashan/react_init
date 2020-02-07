@@ -1,7 +1,7 @@
 /**
  * 返回传入时间的年月日
  * @param {String} time 
- * @param {String} format 'y-m-d'/'m-d'
+ * @param {String} format 'y-m-d'/'m-d'/'y'
  * @return {String}
  */
 export function handleTime (time = '', format) {
@@ -17,6 +17,8 @@ export function handleTime (time = '', format) {
         return `${year}-${month}-${day}`;
     } else if (format === 'm-d') {
         return `${month}-${day}`;
+    } else if (format === 'y') {
+        return year;
     } else {
         return '输入日期格式不符合';
     }
