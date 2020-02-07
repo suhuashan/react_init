@@ -4,16 +4,16 @@ react_blog：使用react、redux、koa2实现的博客系统（项目部分样�
 ### 技术栈
 
 ##### 前端技术栈
-react(hooks)
-redux
-axios
-immutable
+- react(hooks)
+- redux
+- axios
+- immutable
 
 ##### 后端技术栈
-koa2 
-mysql 
-sequelize
-redis
+- koa2 
+- mysql 
+- sequelize
+- redis
 
 ### 项目模块完成情况
 
@@ -33,6 +33,7 @@ redis
   - [ ] 博客档案（按时间排序） 
 - [x] 写作
   - [x] 撰写发布博客
+  - [x] 存储草稿
 - [ ] 搜索
   - [ ] 搜索博客标题关键词
 - [ ] 草稿
