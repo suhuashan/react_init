@@ -8,7 +8,6 @@ const ATTRIBUTES = [
     ['author', 'blogAuthor'],
     ['title', 'blogTitle'],
     ['abstract', 'blogAbstract'],
-    ['content', 'blogContent'],
     ['createdAt', 'blogTime'],
     ['tags', 'blogTags'],
     ['categories', 'blogCategories'],
@@ -141,9 +140,29 @@ const getBlogListByTags = async (ctx) => {
     }
 };
 
+const getBlogListByArchives = async (ctx) => {
+    try {
+        let res = await Article.findAll({
+            attributes: ATTRIBUTES,
+            where: {
+                userID: ctx.session.userID,
+                status: 'published'
+            },
+            order: [['createdAt', 'desc']]
+        });
+        ctx.body = new SuccessModel({
+            list: res,
+            total: res.length
+        });
+    } catch (e) {
+        ctx.body = new ErrorModel('获取失败');
+    }
+};
+
 module.exports = {
     'POST /blog/save_publish_blog': savePublishBlog,
     'POST /blog/get_blog_list': getBlogList,
     'POST /blog/get_blog_list/by_categories': getBlogListByCategories,
-    'POST /blog/get_blog_list/by_tags': getBlogListByTags
+    'POST /blog/get_blog_list/by_tags': getBlogListByTags,
+    'GET /blog/get_blog_list/by_archives': getBlogListByArchives
 }
