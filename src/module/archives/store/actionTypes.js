@@ -1,0 +1,1 @@
+export const GET_BLOG_BY_ARCHIVES = 'get_blog_by_archives';
