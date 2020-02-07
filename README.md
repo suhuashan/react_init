@@ -3,13 +3,13 @@ react_blog：使用react、redux、koa2实现的博客系统（项目部分样�
 
 ### 技术栈
 
-### 前端技术栈
+##### 前端技术栈
 react(hooks)
 redux
 axios
 immutable
 
-### 后端技术栈
+##### 后端技术栈
 koa2 
 mysql 
 sequelize
