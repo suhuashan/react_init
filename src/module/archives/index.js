@@ -15,7 +15,7 @@ import { handleTime } from '@/util/time.js';
 function Archives () {
     let dispatch = useDispatch();
     let blogListYearMap = useSelector(state => {
-        let blogList = state.getIn(['archives']).toJS() || [];
+        let blogList = state.getIn(['archives', 'blogList']).toJS() || [];
         let blogListYearMap = {};
 
         blogList.forEach (item => {
@@ -31,7 +31,7 @@ function Archives () {
         return blogListYearMap;
     });
     let blogListTotal = useSelector(state => {
-        return state.getIn(['archives']).toJS().length;
+        return state.getIn(['archives','blogNum']);
     });
 
     useEffect(() => {
@@ -44,8 +44,8 @@ function Archives () {
                 <ArchivesInfoLogo/>
                 <ArchivesInfo>目前共计{blogListTotal}篇日志。 继续努力。</ArchivesInfo>
                 {
-                    Object.keys(blogListYearMap).map(year => {
-                      return (
+                    blogListTotal > 0 && Object.keys(blogListYearMap).map(year => {
+                    return (
                         <React.Fragment key={year}>
                             <ArchivesYear>{year}</ArchivesYear>
                             {
@@ -61,9 +61,9 @@ function Archives () {
                                 })
                             }
                         </React.Fragment>
-                      )
+                    )
                     })
-                }
+                }                
             </ArchivesContent>
         </ArchivesWrapper>
     );

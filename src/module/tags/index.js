@@ -5,8 +5,9 @@ import { actionCreators } from './store/index.js';
 import CommonHeader from '../common/header/index.js';
 
 function Tags (props) {
-    let { tags = '' } = useSelector(state => ({
-        tags: state.getIn(['homeLayout', 'tags']).split(',')
+    let { tags, tagsLen } = useSelector(state => ({
+        tags: state.getIn(['homeLayout', 'tags']),
+        tagsLen: state.getIn(['homeLayout', 'tagsLen'])
     }));
     
     let loadDetailByTags = (tagName) => {
@@ -15,10 +16,10 @@ function Tags (props) {
 
     return (
         <TagsWrapper>
-            <CommonHeader text='标签' number={tags.length} />
+            <CommonHeader text='标签' number={tagsLen} />
             <TagsList>
                 {
-                    tags.map(item => {
+                    tags && tags.split(',').map(item => {
                         return (
                             <TagsItem key={item} onClick={() => {loadDetailByTags(item)}}>
                                 {item}

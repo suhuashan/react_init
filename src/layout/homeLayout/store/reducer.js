@@ -8,12 +8,18 @@ const defaultState = fromJS({
     avatar: '',
     tags: '',
     categories: '',
-    articles: []
+    articles: [],
+    tagsLen: 0,
+    categoriesLen: 0
 });
 
 export default (previousState = defaultState, action) => {
     switch (action.type) {
         case actionTypes.GET_USER_INFO: 
+            let { tags = '',  categories = ''} = action.payload;
+            
+            action.payload.tagsLen = tags && tags.split(',').length || 0;
+            action.payload.categoriesLen = categories && categories.split(',').length || 0;
             return previousState.merge(action.payload);
         default: 
             return previousState;

@@ -16,8 +16,11 @@ import { HomeWrapper,
 
 function Home () {
     let dispatch = useDispatch();
-    let blogList = useSelector(state => {
-        return state.get('home').toJS();
+    let { blogList, blogNum } = useSelector(state => {
+        return {
+            blogList: state.getIn(['home', 'blogList']).toJS(),
+            blogNum: state.getIn(['home', 'blogNum'])
+        }
     });
 
     let readDetail = (blogID) => {
@@ -27,11 +30,11 @@ function Home () {
     useEffect(() => {
         dispatch(actionCreators.getBlogList(10, 0));
     }, []);
-    
+
     return (
         <HomeWrapper>
             {
-                blogList.map((item, index) => {
+                blogNum > 0 && blogList.map((item, index) => {
                     return (
                         <BlogItem key={uuid(index)}>
                             <BlogTitle title={item.blogTitle}>{item.blogTitle}</BlogTitle>

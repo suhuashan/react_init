@@ -5,8 +5,9 @@ import { actionCreators } from './store/index.js';
 import CommonHeader from '../common/header/index.js';
 
 function Categories (props) {
-    let { categories = '' } = useSelector(state => ({
-        categories: state.getIn(['homeLayout', 'categories']).split(',')
+    let { categories, categoriesLen } = useSelector(state => ({
+        categories: state.getIn(['homeLayout', 'categories']),
+        categoriesLen: state.getIn(['homeLayout', 'categoriesLen'])
     }));
 
     let loadCategoryDetailBlog = (categoryName) => {
@@ -15,11 +16,11 @@ function Categories (props) {
 
     return (
         <CategoryWrapper>
-            <CommonHeader text="分类" number={categories.length} />
+            <CommonHeader text="分类" number={categoriesLen} />
             <CategoryList>
                 <ul>
                     {
-                        categories.map(item => {
+                        categories && categories.split(',').map(item => {
                             return (
                                 <li key={item}>
                                     <span onClick={() => {loadCategoryDetailBlog(item)}}>{item}</span>

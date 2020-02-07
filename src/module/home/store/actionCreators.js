@@ -13,11 +13,12 @@ export const getBlogList = (limit, offset) => {
                 offset
             }
         }).then(res => {
-            
-            let blogList = get(res, 'data.list', []);
             dispatch({
                 type: actionTypes.GET_BLOG_LIST,
-                payload: blogList
+                payload: {
+                    blogList: get(res, 'data.list', []),
+                    blogNum: get(res, 'data.total', 0)
+                }
             })
         });
     };

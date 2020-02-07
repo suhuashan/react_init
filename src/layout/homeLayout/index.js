@@ -35,13 +35,14 @@ function HomeLayout (props) {
     let [isEdit, setEditStatus] = useState(false);
 
     let userData = useSelector(state => {
+        console.log(state.getIn(['homeLayout', 'categoriesLen']));
         return {
             username: state.getIn(['homeLayout', 'username']),
             signature: state.getIn(['homeLayout', 'signature']),
             desc: state.getIn(['homeLayout', 'desc']),
             avatar: state.getIn(['homeLayout', 'avatar']),
-            tags: state.getIn(['homeLayout', 'tags']).split(',').length,
-            categories: state.getIn(['homeLayout', 'categories']).split(',').length,
+            tags: state.getIn(['homeLayout', 'tagsLen']),
+            categories: state.getIn(['homeLayout', 'categoriesLen']),
             articles: state.getIn(['homeLayout', 'articles']).length
         };
     });
