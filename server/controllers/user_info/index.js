@@ -1,6 +1,5 @@
 const { SuccessModel, ErrorModel } = require('../../util/response');
-const model = require('../../db/model');
-const User = model.user;
+const { user: User, article: Article } = require('../../db/model');
 
 const getUserInfo = async (ctx) => {
     let username = ctx.session.username,
@@ -10,7 +9,11 @@ const getUserInfo = async (ctx) => {
             },
             attributes: [
                 'username', 'desc', 'signature', 'avatar', 'tags', 'createdAt', 'categories'
-            ]
+            ],
+            include: [{
+                model: Article,
+                attributes: [['id', 'blogID']]
+            }]
         });
         
     if (res) {
