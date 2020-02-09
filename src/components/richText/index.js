@@ -1,4 +1,4 @@
-import React, { useState, useRef, useImperativeHandle } from 'react';
+import React, { useState, useEffect, useRef, useImperativeHandle } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { ImageDrop } from 'quill-image-drop-module';
@@ -11,6 +11,8 @@ function RichText (props, ref) {
     let onQuillChange = (content) => {
         props.onQuillChange && props.onQuillChange(content);
     };
+
+    let [defaultValue] = useState(props.defaultValue);
 
     useImperativeHandle(ref, () => ({
         getContent: () => {
@@ -64,9 +66,12 @@ function RichText (props, ref) {
         },
         imageDrop: true
     };
-
+    useEffect(() => {
+        console.log('reactQuill Effect');
+        console.log(defaultValue);
+    }, [defaultValue])
     return  <ReactQuill ref={quillRef}
-                        defaultValue={props.defaultValue}
+                        defaultValue={defaultValue}
                         modules={Object.assign(DEFAULT_OPTIONS, props.options)}
                         onChange={onQuillChange}/>
 };
