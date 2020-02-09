@@ -21,6 +21,8 @@ const TagsComponent = lazy(() => import("../module/tags/index.js"));
 const TagsDetailComponent = lazy(() => import("../module/tags/detail/index.js"));
 const ArchivesComponent = lazy(() => import("../module/archives/index.js"));
 const WriteComponent = lazy(() => import("../module/write/index.js"));
+const DraftComponent = lazy(() => import("../module/draft/index.js"));
+const BlogDetailComponent = lazy(() => import("../module/blogDetail/index.js"));
 
 export default [
     {
@@ -66,8 +68,16 @@ export default [
                         component: SuspenseComponent(ArchivesComponent)
                     },
                     {
-                        path: "/write",
+                        path: "/write/:blogID?",
                         component: SuspenseComponent(WriteComponent)
+                    },
+                    {
+                        path: "/draft",
+                        component: SuspenseComponent(DraftComponent)
+                    },
+                    {
+                        path: "/detail/:year/:month/:day/:blogName/:blogID",
+                        component: SuspenseComponent(BlogDetailComponent)
                     }
                 ]
             }
