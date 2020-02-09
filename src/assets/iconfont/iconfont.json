@@ -55,6 +55,13 @@
       "unicode_decimal": 58943
     },
     {
+      "icon_id": "6396438",
+      "name": "草稿",
+      "font_class": "caogao",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
       "icon_id": "7636878",
       "name": "我 的",
       "font_class": "about",
