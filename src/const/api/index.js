@@ -27,3 +27,11 @@ export const GET_BLOG_LIST_BY_TAGS = '/get_blog_list/by_tags';
 
 //根据日期获取博客（归档）
 export const GET_BLOG_LIST_BY_ARCHIVES = '/get_blog_list/by_archives';
+
+//获取草稿博客
+export const GET_DRAFT_BLOG = '/get_draft_blog';
+
+//更新博客浏览数
+export const UPDATE_BLOG_READ = '/update_blog_read';
+
+export const GET_BLOG_DETAIL = 'get_blog_detail';
