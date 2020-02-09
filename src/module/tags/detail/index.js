@@ -17,7 +17,8 @@ function TagsDetail (props) {
     return (
         <CategoryTagBlog text="标签"
                          title={tagName}
-                         blogList={blogList}></CategoryTagBlog>
+                         blogList={blogList}
+                         history={props.history}></CategoryTagBlog>
     )
 }
 

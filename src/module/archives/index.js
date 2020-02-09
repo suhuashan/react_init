@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toJS } from 'immutable';
 import { actionCreators } from './store/index.js';
 import { ArchivesWrapper, 
          ArchivesContent,
@@ -10,16 +9,16 @@ import { ArchivesWrapper,
 import { BlogItem,
          BlogDetail,
          BlogTitle } from '../common/categoryTagBlog/style.js';
-import { handleTime } from '@/util/time.js';
+import { formatTime } from '@/util/time.js';
 
-function Archives () {
+function Archives (props) {
     let dispatch = useDispatch();
     let blogListYearMap = useSelector(state => {
         let blogList = state.getIn(['archives', 'blogList']).toJS() || [];
         let blogListYearMap = {};
 
         blogList.forEach (item => {
-            let targetYear = handleTime(item.blogTime, 'y');
+            let targetYear = formatTime(item.blogTime, 'y');
 
             if (blogListYearMap[targetYear]) {
                 blogListYearMap[targetYear].push(item);
@@ -33,6 +32,10 @@ function Archives () {
     let blogListTotal = useSelector(state => {
         return state.getIn(['archives','blogNum']);
     });
+    let goBlogDetail = (blog) => {
+        let { blogTime, blogTitle, blogID } = blog;
+        props.history.replace(`/detail/${formatTime(blogTime, 'y/m/d')}/${blogTitle}/${blogID}`);
+    }
 
     useEffect(() => {
         dispatch(actionCreators.getBlogListByArchives());
@@ -53,8 +56,9 @@ function Archives () {
                                     return (
                                         <BlogItem key={item.blogID}>
                                             <BlogDetail>
-                                                <span>{handleTime(item.blogTime, 'm-d')}</span>
-                                                <BlogTitle title={item.blogTitle}>{item.blogTitle}</BlogTitle>
+                                                <span>{formatTime(item.blogTime, 'm-d')}</span>
+                                                <BlogTitle title={item.blogTitle}
+                                                           onClick={() => goBlogDetail(item)}>{item.blogTitle}</BlogTitle>
                                             </BlogDetail>
                                         </BlogItem>
                                     )
