@@ -9,6 +9,7 @@ function FormInput (props, ref) {
         wrapperCol: { span: 28 },
     };
     const { getFieldDecorator } = props.form;
+    let { blogTitle = '', blogAbstract = ''} = props.formValue;
 
     return (
         <Form> 
@@ -26,15 +27,17 @@ function FormInput (props, ref) {
                                 } 
                             }
                         ],
-                        validateTrigger: 'onBlur'
+                        validateTrigger: 'onBlur',
+                        initialValue: blogTitle
                     }
                 )(
-                    <Input placeholder="文章标题" autoComplete="off" />,
+                    <Input placeholder="文章标题" autoComplete="off"/>,
                 )}
             </Form.Item>
             <Form.Item>
                 {getFieldDecorator('blogAbstract', {
                     rules: [{ required: true, message: '文章摘要不能为空！' }],
+                    initialValue: blogAbstract
                 })(
                     <TextArea placeholder="文章摘要" rows={3}/>
                 )}
