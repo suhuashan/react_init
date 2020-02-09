@@ -20,14 +20,19 @@ export default [
         navIcon: 'icon-categories'
     },
     {
+        navText: '写作',
+        navPath: '/write',
+        navIcon: 'icon-xiezuo'
+    },
+    {
         navText: '归档',
         navPath: '/archives',
         navIcon: 'icon-archives'
     },
     {
-        navText: '写作',
-        navPath: '/write',
-        navIcon: 'icon-xiezuo'
+        navText: '草稿',
+        navPath: '/draft',
+        navIcon: 'icon-caogao'
     },
     {
         navText: '搜索',

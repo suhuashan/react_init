@@ -35,7 +35,6 @@ function HomeLayout (props) {
     let [isEdit, setEditStatus] = useState(false);
 
     let userData = useSelector(state => {
-        console.log(state.getIn(['homeLayout', 'categoriesLen']));
         return {
             username: state.getIn(['homeLayout', 'username']),
             signature: state.getIn(['homeLayout', 'signature']),
