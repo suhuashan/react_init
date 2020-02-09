@@ -6,9 +6,12 @@ import CategoryTagBlog from '../../common/categoryTagBlog/index.js';
 function CategoriesDetail (props) {
     let dispatch = useDispatch();
     let { categoryName } = props.match.params;
-    let blogList = useSelector(state => {
-        return state.get('category').toJS();
-    }) || [];
+    let { blogList, blogNum } = useSelector(state => {
+        return {
+            blogList: state.getIn(['category', 'blogList']).toJS(),
+            blogNum: state.getIn(['category', 'blogNum'])
+        }
+    });
 
     useEffect(() => {
         dispatch(actionCreators.getBlogListByCategories(categoryName));
@@ -17,7 +20,8 @@ function CategoriesDetail (props) {
     return (
         <CategoryTagBlog text="分类"
                          title={categoryName}
-                         blogList={blogList}></CategoryTagBlog>
+                         blogList={blogNum > 0 ? blogList : []}
+                         history={props.history}></CategoryTagBlog>
     )
 }
 
