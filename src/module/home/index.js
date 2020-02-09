@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { toJS } from 'immutable';
 import { useSelector, useDispatch } from 'react-redux';
 import uuid from '@/util/uuid.js';
-import { handleTime } from '@/util/time.js';
+import ajax from '@/util/request.js';
+import { formatTime } from '@/util/time.js';
 import { actionCreators } from './store/index.js';
 import { HomeWrapper,
          BlogItem,
-         BlogTitle,
-         BlogInfo,
-         BlogInfoItem,
          BlogAbstract,
          ReadAll
 } from './style.js';
+import { UPDATE_BLOG_READ } from '@/const/api/index.js';
+import BlogDetailInfo from '../common/blogInfo/index.js';
 
 
-function Home () {
+
+function Home (props) {
     let dispatch = useDispatch();
     let { blogList, blogNum } = useSelector(state => {
         return {
@@ -23,8 +23,17 @@ function Home () {
         }
     });
 
-    let readDetail = (blogID) => {
-
+    let readDetail = (blog) => {
+        ajax({
+            url: UPDATE_BLOG_READ,
+            method: 'post',
+            data: {
+                blogID: blog.blogID
+            }
+        }).then(() => {
+            let { blogTime, blogTitle, blogID } = blog;
+            props.history.replace(`/detail/${formatTime(blogTime, 'y/m/d')}/${blogTitle}/${blogID}`);
+        });
     }
 
     useEffect(() => {
@@ -37,23 +46,9 @@ function Home () {
                 blogNum > 0 && blogList.map((item, index) => {
                     return (
                         <BlogItem key={uuid(index)}>
-                            <BlogTitle title={item.blogTitle}>{item.blogTitle}</BlogTitle>
-                            <BlogInfo>
-                                <BlogInfoItem>
-                                    <i className="iconfont icon-send"></i> 
-                                    <span>发表于{handleTime(item.blogTime, 'y-m-d')}</span> |
-                                    <i className="iconfont icon-wenjianjia"></i>
-                                    <span>分类于{item.blogCategories}</span>
-                                </BlogInfoItem>
-                                <BlogInfoItem>
-                                    <i className="iconfont icon-zishu"></i> 
-                                    <span>字数统计{item.blogWord}个</span> |
-                                    <i className="iconfont icon-time"></i>
-                                    <span>阅读时长2分钟</span>
-                                </BlogInfoItem>
-                            </BlogInfo>
+                            <BlogDetailInfo blogInfo={item}></BlogDetailInfo>
                             <BlogAbstract title={item.blogAbstract}>{item.blogAbstract}</BlogAbstract>
-                            <ReadAll onClick={() => {readDetail(item.blogID)}}>阅读全文 »</ReadAll>
+                            <ReadAll onClick={() => {readDetail(item)}}>阅读全文 »</ReadAll>
                         </BlogItem>
                     )
                 })
