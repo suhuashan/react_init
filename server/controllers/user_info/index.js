@@ -12,7 +12,7 @@ const getUserInfo = async (ctx) => {
             ],
             include: [{
                 model: Article,
-                attributes: [['id', 'blogID']]
+                attributes: ['blogID']
             }]
         });
         

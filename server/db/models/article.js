@@ -9,6 +9,11 @@ const Article = sequelize.define(
             type: Sequelize.INTEGER,
             autoIncrement: true
         },
+        blogID: {                            //博客ID
+            type: Sequelize.STRING(100),
+            allowNull: false,
+            unique: true,
+        },
         author: Sequelize.STRING(100),       //博客作者
         title: Sequelize.STRING,             //博客标题
         abstract: Sequelize.STRING,          //博客摘要
