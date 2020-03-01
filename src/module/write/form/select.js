@@ -60,7 +60,7 @@ function FormSelect (props, ref) {
             <Form.Item label="文章类型"> 
                 {getFieldDecorator('blogType', {
                     rules: [{ required: true, message: '文章类型不能为空！' }],
-                    initialValue: blogType
+                    initialValue: blogType || undefined
                 })(
                     <Select style={{ width: '20%' }} 
                             placeholder="文章类型" >

@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from  'react';
+import React, { createRef, useEffect, useState } from  'react';
 import { useSelector, useDispatch } from 'react-redux';
 import RichText from '@/components/richText/index.js';
 import { WriteWrapper, 
@@ -17,18 +17,21 @@ import FormInput from './form/input.js';
 import FormSelect from './form/select.js';
 
 function Write (props) {
+    let tempBlogContent;
     let dispatch = useDispatch();
     let richTextRef = createRef();
     let formIputRef = createRef();
     let formSelectRef = createRef();
     let { blogID } = props.match.params;
+    
     let { blogTitle, blogAbstract, blogContent, blogStatus, blogType, 
-          blogTags, blogCategories } = useSelector(state => state.get('write').toJS());
+          blogTags, blogCategories } = useSelector(state => {
+              return state.get('write').toJS();   
+          });
 
     let savePublishBlog = (type) => {
-        let blogContent = richTextRef.current.getContent();
-
-        if (!blogContent) {
+        tempBlogContent = tempBlogContent || blogContent;
+        if (!tempBlogContent) {
             message.warning('表单填写不完整');
             return;
         }
@@ -50,7 +53,7 @@ function Write (props) {
                     blogTags: blogTags.join(),
                     blogCategories: blogCategories.join(),
                     blogType,
-                    blogContent
+                    blogContent: tempBlogContent
                 }   
             }).then(res => {
                 let isPublished = type === 'published';
@@ -65,15 +68,23 @@ function Write (props) {
     };
 
     useEffect(() => {
-        console.log('write effect');
         dispatch(getDraftDetail(props.match.params.blogID || ''));
     }, []);
+
+    let saveEditorContent = (content) => {
+        tempBlogContent = content;
+    };
 
     return (
         <WriteWrapper>
             <WriteTitle>创作你的创作</WriteTitle>
             <FormInput ref={formIputRef} formValue={{blogTitle, blogAbstract}}/>
-            <RichText ref={richTextRef} url='http://localhost:8000/blog/upload' defaultValue={blogContent}/>
+            
+            <RichText url='http://localhost:8000/blog/upload' 
+                    defaultValue={blogContent}
+                    onQuillChange={saveEditorContent}
+            /> 
+            
             <FormSelect ref={formSelectRef} formValue={{blogTags, blogCategories, blogType}}/>
             <BottomBtn>
                 <Button onClick={() => savePublishBlog('draft')}>保存为草稿</Button>

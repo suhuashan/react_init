@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const WriteWrapper = styled.div`
     width: 100%;
+    .quill {
+        margin-bottom: 25px;
+    }
 `;
 
 export const WriteTitle = styled.div`
