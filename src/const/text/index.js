@@ -15,6 +15,12 @@ export const ARTICLE_TYPE = [
     }
 ];
 
+export const BLOG_TYPE = {
+    'original': '原创',
+    'reproduce': '转载',
+    'translate': '翻译'
+};
+
 //博客状态  'draft'表示仍为草稿，'published'表示为已经发布
 export const BLOG_STATUS = {
     draft: 'draft',

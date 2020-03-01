@@ -34,4 +34,5 @@ export const GET_DRAFT_BLOG = '/get_draft_blog';
 //更新博客浏览数
 export const UPDATE_BLOG_READ = '/update_blog_read';
 
-export const GET_BLOG_DETAIL = 'get_blog_detail';
+//获取博客详情
+export const GET_BLOG_DETAIL = '/get_blog_detail';
