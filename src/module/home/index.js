@@ -64,7 +64,7 @@ function Home (props) {
                             return (
                                 <BlogItem key={uuid(index)}>
                                     <BlogDetailInfo blogInfo={item}></BlogDetailInfo>
-                                    <BlogAbstract title={item.blogAbstract}>{item.blogAbstract}</BlogAbstract>
+                                    <BlogAbstract title={item.blogAbstract}>摘要：{item.blogAbstract}</BlogAbstract>
                                     <ReadAll onClick={() => {readDetail(item)}}>阅读全文 »</ReadAll>
                                 </BlogItem>
                             )

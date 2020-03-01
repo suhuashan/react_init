@@ -8,6 +8,7 @@ import { BlogDetailWrapper,
          BlogTag } from './style.js';
 import { actionCreators } from './store/index.js'; 
 import BlogDetailInfo from '../common/blogInfo/index.js';
+import 'react-quill/dist/quill.snow.css';
 
 function BlogDetail (props) {
     let dispatch = useDispatch();
@@ -28,9 +29,13 @@ function BlogDetail (props) {
             <DetailArticle>
                 <BlogDetailInfo blogInfo={{blogTitle, blogCategories, blogTime, blogWord, blogType}}></BlogDetailInfo>
                 <BlogAbstract>
-                    {blogAbstract}
+                    摘要：{blogAbstract}
                 </BlogAbstract>
-                <BlogContent dangerouslySetInnerHTML={{ __html: blogContent }}></BlogContent>
+                <BlogContent className="ql-snow">
+                    <div className="ql-editor"
+                         dangerouslySetInnerHTML={{ __html: blogContent }}>        
+                    </div>
+                </BlogContent>
                 <BlogEnd>
                     -------------本文结束
                     <i className={`iconfont icon-jiaoyin`}></i>

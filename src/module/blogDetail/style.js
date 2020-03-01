@@ -16,6 +16,7 @@ export const BlogAbstract = styled.div`
     color: #555;
     line-height: 28px;
     margin-top: 20px;
+    padding: 0 15px;
 `;
 
 export const BlogContent = styled.div`
