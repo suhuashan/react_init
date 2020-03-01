@@ -4,6 +4,13 @@ import { CommonEllipsis } from '../../style/common.js';
 export const HomeWrapper = styled.div`
     width: 100%;
     min-height: 500px;
+    .ant-empty-normal {
+        margin: 160px 0;
+    }
+    .ant-pagination {
+        float: right;
+        padding-right: 20px;
+    }
 `;
 
 export const BlogItem = styled.div`

@@ -30,24 +30,35 @@ const savePublishBlog = async(ctx) => {
         blogCategories,
         blogStatus
     } = ctx.request.body;
-    let isDraft = blogType === 'draft';
+    let isDraft = blogStatus === 'draft';
 
     try {
         if (blogID) {
             //blogID存在为编辑草稿
-            await Article.update({
+            console.log(
                 blogTitle,
                 blogAbstract,
                 blogContent,
                 blogTags,
                 blogCategories,
                 blogStatus
+            );
+            console.log('------------------')
+            await Article.update({
+                title: blogTitle,
+                abstract: blogAbstract,
+                content: blogContent,
+                tags: blogTags,
+                categories: blogCategories,
+                status: blogStatus
             }, {
                 where: {
                     blogID,
                     userID: ctx.session.userID
                 }
             });
+            console.log('------------------')
+
         } else{
             //blogID不存在创建文章
             await Article.create({
@@ -95,14 +106,20 @@ const savePublishBlog = async(ctx) => {
 
 //获取首页博客列表
 const getBlogList = async (ctx) => {
-    let { limit, offset } =  ctx.request.body;
+    let { limit, offset, keyword } =  ctx.request.body;
+    const queryCondition = {
+        status: 'published',
+        [Op.or]: [
+            {title: {[Op.like]: `%${keyword}%`}},
+            {abstract: {[Op.like]: `%${keyword}%`}},
+            {content: {[Op.like]: `%${keyword}%`}}
+        ]
+    };
     try {
-        let blogListTotal = await Article.findAll({where:{status: 'published'}});
+        let blogListTotal = await Article.findAll({where: queryCondition});
         let blogList = await Article.findAll({
             attributes: ATTRIBUTES,
-            where: {
-                status: 'published'
-            },
+            where: queryCondition,
             order: [['createdAt', 'desc']],
             limit,
             offset

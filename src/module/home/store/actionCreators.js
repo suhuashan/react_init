@@ -3,14 +3,15 @@ import { actionTypes } from './index.js';
 import ajax from '@/util/request.js';
 import get from 'lodash/get';
 
-export const getBlogList = (limit, offset) => {
+export const getBlogList = (limit, offset, keyword = '') => {
     return (dispatch) => {
         ajax({
             url: GET_BLOG_LIST,
             method: 'post',
             data: {
                 limit,
-                offset
+                offset,
+                keyword
             }
         }).then(res => {
             dispatch({
