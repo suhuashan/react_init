@@ -25,7 +25,7 @@ function BlogDetailInfo (props) {
                     <i className="iconfont icon-zishu"></i> 
                     <span>字数统计{blogInfo.blogWord}个</span> |
                     <i className="iconfont icon-time"></i>
-                    <span>阅读时长≈{Math.ceil(blogInfo.blogWord / 200)}分钟</span> |
+                    <span>阅读时长≈{Math.ceil(blogInfo.blogWord / 500)}分钟</span> |
                     <i className="iconfont icon-wenzhangleixing1"></i>
                     <span>{BLOG_TYPE[blogInfo.blogType]}</span>
                 </BlogInfoItem>
