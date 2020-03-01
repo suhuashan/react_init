@@ -23,7 +23,10 @@ function Categories (props) {
                         categories && categories.split(',').map(item => {
                             return (
                                 <li key={item}>
-                                    <span onClick={() => {loadCategoryDetailBlog(item)}}>{item}</span>
+                                    <span onClick={() => {loadCategoryDetailBlog(item)}}>
+                                        <i className="iconfont icon-wenjianjia"></i>
+                                        {item}
+                                    </span>
                                 </li>
                             )
                         })
