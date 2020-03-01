@@ -28,3 +28,26 @@ export const BlogContent = styled.div`
         margin: 10px 0;
     }
 `;
+
+export const BlogEnd = styled.div`
+    font-size: 14px;
+    text-align: center;
+    color: #ccc;
+    .iconfont {
+        color: #ccc;
+    }
+`;
+
+export const BlogTag = styled.ul`
+    margin-top: 40px;
+    text-align: center;
+    li {
+        font-size: 13px;
+        display: inline-block;
+        border-bottom: 1px solid #999;
+        height: 28px;
+        line-height: 28px;
+        margin: 0 2px;
+        cursor: pointer;
+    }
+`;

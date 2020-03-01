@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {
     CtgDetailWrapper,
     CtgDetailContent,
@@ -9,12 +10,16 @@ import {
 } from './style.js';
 import { formatTime } from '@/util/time.js';
 import uuid from '@/util/uuid.js';
+import { getDraftDetail } from '@/module/write/store/actionCreators.js';
+
 
 function CategoryTagBlog (props) {
+    let dispatch = useDispatch();
     let { title, blogList, text, history, type } = props;
     let goBlogDetail = (blog) => {
         if (type === 'draft') {
             history.replace(`/write/${blog.blogID}`);
+            // dispatch(getDraftDetail(blog.blogID || ''));
         } else {
             let { blogTime, blogTitle, blogID } = blog;
             history.replace(`/detail/${formatTime(blogTime, 'y/m/d')}/${blogTitle}/${blogID}`);
@@ -29,7 +34,7 @@ function CategoryTagBlog (props) {
                     <span>{text}</span>
                 </CtgTitle>
                 {
-                    blogList.map(item => {
+                    blogList.reverse().map(item => {
                         return (
                             <BlogItem key={uuid(item.blogID)}>
                                 <BlogDetail>
