@@ -14,22 +14,6 @@ export const WriteTitle = styled.div`
     text-align: center;
 `;
 
-export const WriteInput = styled.div`
-    margin-bottom: 10px;
-    input {
-        margin-bottom: 10px;
-    }
-`;
-
-export const BottomPart = styled.div`
-    width: 100%;
-`;
-
-export const ArticleInfo = styled.div`
-    font-size: 14px;
-    margin: 10px 0 20px 10px;
-`;
-
 export const BottomBtn = styled.div`
     height: 40px;
     line-height: 40px;

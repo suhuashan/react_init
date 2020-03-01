@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { CategoryWrapper, CategoryList } from './style.js';
-import { actionCreators } from './store/index.js';
 import CommonHeader from '../common/header/index.js';
 
 function Categories (props) {

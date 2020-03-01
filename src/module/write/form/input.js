@@ -1,13 +1,9 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react';
-import { Button, Input, Select, Form } from 'antd';
+import React, { forwardRef } from 'react';
+import { Input, Form } from 'antd';
 
 const { TextArea } = Input;
 
 function FormInput (props, ref) {
-    const formItemLayout = {
-        labelCol: { span: 3 },
-        wrapperCol: { span: 28 },
-    };
     const { getFieldDecorator } = props.form;
     let { blogTitle = '', blogAbstract = ''} = props.formValue;
 

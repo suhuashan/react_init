@@ -18,8 +18,8 @@ export default (previousState = defaultState, action) => {
         case actionTypes.GET_USER_INFO: 
             let { tags = '',  categories = ''} = action.payload;
             
-            action.payload.tagsLen = tags && tags.split(',').length || 0;
-            action.payload.categoriesLen = categories && categories.split(',').length || 0;
+            action.payload.tagsLen = (tags && tags.split(',').length) || 0;
+            action.payload.categoriesLen = (categories && categories.split(',').length) || 0;
             return previousState.merge(action.payload);
         default: 
             return previousState;

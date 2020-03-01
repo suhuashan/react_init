@@ -1,12 +1,9 @@
-import React, { createRef, useEffect, useState } from  'react';
+import React, { createRef, useEffect } from  'react';
 import { useSelector, useDispatch } from 'react-redux';
 import RichText from '@/components/richText/index.js';
 import { WriteWrapper, 
          WriteTitle, 
-         WriteInput, 
-         BottomPart,
-         BottomBtn,
-         ArticleInfo } from './style.js';
+         BottomBtn } from './style.js';
 import { actionCreators } from '@/layout/homeLayout/store/index.js';
 import { getDraftDetail } from './store/actionCreators.js';
 import { SAVE_PUBLISH_BLOG } from '@/const/api/index.js';
@@ -19,12 +16,11 @@ import FormSelect from './form/select.js';
 function Write (props) {
     let tempBlogContent;
     let dispatch = useDispatch();
-    let richTextRef = createRef();
     let formIputRef = createRef();
     let formSelectRef = createRef();
     let { blogID } = props.match.params;
     
-    let { blogTitle, blogAbstract, blogContent, blogStatus, blogType, 
+    let { blogTitle, blogAbstract, blogContent, blogType, 
           blogTags, blogCategories } = useSelector(state => {
               return state.get('write').toJS();   
           });
