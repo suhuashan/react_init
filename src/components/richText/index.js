@@ -46,7 +46,11 @@ function RichText (props) {
         toolbar: {
             container: [
                 [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],
+                ['blockquote', 'code-block'],
                 [{ 'align': []}],
+                ['bold', 'italic', 'underline', 'strike'],  
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
                 ['image']
             ],
             handlers: {
