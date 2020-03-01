@@ -22,6 +22,7 @@ function Tags (props) {
                     tags && tags.split(',').map(item => {
                         return (
                             <TagsItem key={item} onClick={() => {loadDetailByTags(item)}}>
+                                <i className="iconfont icon-tags"></i>
                                 {item}
                             </TagsItem>
                         )

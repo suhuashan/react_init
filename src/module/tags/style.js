@@ -10,7 +10,7 @@ export const TagsList = styled.div`
 
 export const TagsItem = styled.span`
     font-size: 12px;
-    color: #ccc;
+    color: #555;
     display: inline-block;
     height: 25px;
     line-height: 25px;
