@@ -33,10 +33,5 @@ export default [
         navText: '草稿',
         navPath: '/draft',
         navIcon: 'icon-caogao'
-    },
-    {
-        navText: '搜索',
-        navPath: '/search',
-        navIcon: 'icon-search'
     }
 ];
