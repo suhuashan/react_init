@@ -6,18 +6,32 @@
   "description": "毕业设计",
   "glyphs": [
     {
-      "icon_id": "669832",
-      "name": "搜索",
-      "font_class": "search",
-      "unicode": "e683",
-      "unicode_decimal": 59011
+      "icon_id": "7163831",
+      "name": "文章类型",
+      "font_class": "wenzhangleixing1",
+      "unicode": "e698",
+      "unicode_decimal": 59032
     },
     {
-      "icon_id": "1316130",
-      "name": "编辑",
-      "font_class": "bianji-page",
-      "unicode": "e61f",
-      "unicode_decimal": 58911
+      "icon_id": "7901919",
+      "name": "脚印",
+      "font_class": "jiaoyin",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "6396438",
+      "name": "草稿",
+      "font_class": "caogao",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "5286716",
+      "name": "文件夹",
+      "font_class": "wenjianjia",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
     },
     {
       "icon_id": "2116298",
@@ -34,11 +48,46 @@
       "unicode_decimal": 58894
     },
     {
+      "icon_id": "11117995",
+      "name": "字数",
+      "font_class": "zishu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "7933561",
+      "name": "写作",
+      "font_class": "xiezuo",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "1316130",
+      "name": "编辑",
+      "font_class": "bianji-page",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "11855597",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
       "icon_id": "3007014",
       "name": "归档 (1)",
       "font_class": "archives",
       "unicode": "e68a",
       "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "669832",
+      "name": "搜索",
+      "font_class": "search",
+      "unicode": "e683",
+      "unicode_decimal": 59011
     },
     {
       "icon_id": "5130057",
@@ -48,32 +97,11 @@
       "unicode_decimal": 58880
     },
     {
-      "icon_id": "5286716",
-      "name": "文件夹",
-      "font_class": "wenjianjia",
-      "unicode": "e63f",
-      "unicode_decimal": 58943
-    },
-    {
-      "icon_id": "6396438",
-      "name": "草稿",
-      "font_class": "caogao",
-      "unicode": "e648",
-      "unicode_decimal": 58952
-    },
-    {
       "icon_id": "7636878",
       "name": "我 的",
       "font_class": "about",
       "unicode": "e601",
       "unicode_decimal": 58881
-    },
-    {
-      "icon_id": "7933561",
-      "name": "写作",
-      "font_class": "xiezuo",
-      "unicode": "e60f",
-      "unicode_decimal": 58895
     },
     {
       "icon_id": "9336340",
@@ -88,20 +116,6 @@
       "font_class": "home",
       "unicode": "e603",
       "unicode_decimal": 58883
-    },
-    {
-      "icon_id": "11117995",
-      "name": "字数",
-      "font_class": "zishu",
-      "unicode": "e604",
-      "unicode_decimal": 58884
-    },
-    {
-      "icon_id": "11855597",
-      "name": "编辑",
-      "font_class": "bianji",
-      "unicode": "e60d",
-      "unicode_decimal": 58893
     }
   ]
 }
