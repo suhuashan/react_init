@@ -3,6 +3,7 @@ import { BlogTitle,
          BlogInfo,
          BlogInfoItem } from './style.js';
 import { formatTime } from '@/util/time.js';
+import { BLOG_TYPE } from '@/const/text/index.js';
 
 
 function BlogDetailInfo (props) {
@@ -10,7 +11,9 @@ function BlogDetailInfo (props) {
 
     return (
         <React.Fragment>
-            <BlogTitle title={blogInfo.blogTitle}>{blogInfo.blogTitle}</BlogTitle>
+            <BlogTitle title={blogInfo.blogTitle}>
+                {blogInfo.blogTitle}
+            </BlogTitle>
             <BlogInfo>
                 <BlogInfoItem>
                     <i className="iconfont icon-send"></i> 
@@ -22,7 +25,9 @@ function BlogDetailInfo (props) {
                     <i className="iconfont icon-zishu"></i> 
                     <span>字数统计{blogInfo.blogWord}个</span> |
                     <i className="iconfont icon-time"></i>
-                    <span>阅读时长2分钟</span>
+                    <span>阅读时长≈{Math.ceil(blogInfo.blogWord / 200)}分钟</span> |
+                    <i className="iconfont icon-wenzhangleixing1"></i>
+                    <span>{BLOG_TYPE[blogInfo.blogType]}</span>
                 </BlogInfoItem>
             </BlogInfo>
         </React.Fragment>

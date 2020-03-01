@@ -5,7 +5,7 @@ export const BlogTitle = styled(CommonEllipsis)`
     margin: 0 auto;
     width: 80%;
     font-size: 22px;
-    font-weight: 400px;
+    font-weight: 400;
     height: 32px;
     line-height: 32px;
     text-align: center;
